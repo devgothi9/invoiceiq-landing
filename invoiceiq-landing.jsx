@@ -6,15 +6,6 @@ export default function InvoiceIQLanding() {
 
   return (
     <>
-      {/* Google Analytics */}
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-6W4LG73RC6"></script>
-      <script>{`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-6W4LG73RC6');
-      `}</script>
-
       <div className="min-h-screen bg-black text-white">
         {/* Navigation */}
         <nav className="bg-black border-b border-gray-800 px-6 py-4">
