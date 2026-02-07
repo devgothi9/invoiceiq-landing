@@ -184,8 +184,8 @@ export default function InvoiceIQLanding() {
           <div className="text-center">
             {/* Logo */}
             <div className="fade-in-up stagger-1 mb-12">
-              <div className="inline-flex items-center justify-center gap-6">
-                <svg width="160" height="160" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <div className="inline-flex items-center justify-center gap-4 md:gap-6 flex-col md:flex-row">
+                <svg width="80" height="80" md-width="160" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 md:w-40 md:h-40">
                   <defs>
                     <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" style={{stopColor: '#3b82f6'}} />
@@ -201,7 +201,7 @@ export default function InvoiceIQLanding() {
                   <path d="M 280 140 Q 320 100, 360 140 Q 400 180, 360 220 Q 320 260, 280 220 Q 240 180, 280 140 Z" fill="url(#logoGradient)" opacity="0.95"/>
                   <path d="M310 170 L330 190 L370 150" stroke="white" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
                 </svg>
-                <h1 className="text-8xl font-bold gradient-text">InvoiceIQ</h1>
+                <h1 className="text-5xl md:text-8xl font-bold gradient-text text-center md:text-left">InvoiceIQ</h1>
               </div>
             </div>
 
