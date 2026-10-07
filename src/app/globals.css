@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   ------------------------------------------------------------------------- */
+@theme {
+  --color-forest-950: #07130d;
+  --color-forest-900: #0f1a14;
+  --color-forest-850: #15241c;
+  --color-forest-800: #1d3026;
+  --color-forest-700: #2a4235;
+
+  --color-green-300: #86efac;
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-800: #166534;
+
+  --color-paper: #f7faf8;
+  --color-mist: #eef3ef;
+  --color-ink: #111713;
+  --color-ink-soft: #2d3530;
+  --color-muted: #5f6a63;
+  --color-border: #dfe7e1;
+  --color-amber-600: #b45309;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --radius-card: 1.5rem;
+  --radius-frame: 0.875rem;
+
+  --breakpoint-xs: 26rem;
+  --breakpoint-3xl: 100rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: 5.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-green-400);
+    color: var(--color-forest-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-green-500);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .on-light :focus-visible {
+    outline-color: var(--color-green-700);
+  }
+
+  img {
+    user-select: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Layout primitives
+   ------------------------------------------------------------------------- */
+@utility container-page {
+  width: 100%;
+  max-width: 90rem; /* 1440 */
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 2.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 4rem;
+  }
+  @media (width >= 100rem) {
+    padding-inline: 5rem;
+  }
+}
+
+@utility grid-page {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 1rem;
+
+  @media (width >= 48rem) {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    column-gap: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+}
+
+@utility section-y {
+  padding-block: 5rem;
+
+  @media (width >= 48rem) {
+    padding-block: 6rem;
+  }
+  @media (width >= 64rem) {
+    padding-block: 8rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Type scale
+   ------------------------------------------------------------------------- */
+@utility text-display {
+  font-size: clamp(2.75rem, 1.4rem + 4.6vw, 5.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+}
+
+@utility text-hero {
+  font-size: clamp(2.875rem, 0.5rem + 4.4vw, 4.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+}
+
+@utility text-section {
+  font-size: clamp(2.25rem, 1.35rem + 3vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+
+@utility text-project {
+  font-size: clamp(2rem, 1.3rem + 2.4vw, 3.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
+
+@utility text-title {
+  font-size: clamp(1.5rem, 1.15rem + 1.1vw, 2.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+@utility text-lead {
+  font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.3125rem);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+
+@utility text-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@utility measure {
+  max-width: 36rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Components
+   ------------------------------------------------------------------------- */
+@utility stretched-link {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+  }
+}
+
+@utility hairline {
+  background-image: linear-gradient(to right, currentColor 0 100%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+/* Subtle grain on dark surfaces — static, no animation */
+@utility grain {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-6px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(8px);
+    opacity: 0;
+  }
+}
